@@ -68,8 +68,9 @@ employeeRouter.put('/employees/:eid', (req, res) => {
     const employee_id = req.params.eid
     const updates = req.body
     if(updates != null) {
-        Employee.findByIdAndUpdate(employee_id, {$set: updates})
+        Employee.findByIdAndUpdate(employee_id, {$set: updates}, { new: true, runValidators: true })
             .then(employee => {
+                console.log(employee)
                 res.status(200).send(employee)
             }).catch(err => {
                 console.log("Error updating employee: ", err)
