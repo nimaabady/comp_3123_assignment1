@@ -3,12 +3,6 @@ const crypto = require('crypto')
 const mongoose = require('mongoose');
 const userRouter = express.Router()
 
-const CONN_STRING = "mongodb+srv://nimaabady_2:9B8pXSQ9sJt1ZmX5@cluster0.q3vew1a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
-mongoose.connect(CONN_STRING, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("MongoDB connected"))
-    .catch(err => console.log(err));
-
 const userSchema = new mongoose.Schema({
     username: String,
     email: String,
