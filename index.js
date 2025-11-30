@@ -1,10 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose")
+const cors = require("cors")
 const userRouter = require("./routers/users")
 const employeeRouter = require("./routers/employees")
+
 const app = express();
 const SERVER_PORT = process.env.POST || 3000;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
