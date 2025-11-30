@@ -64,6 +64,32 @@ employeeRouter.get('/employees/:eid', (req, res) => {
         })
 })
 
+employeeRouter.get('/employees/search/department/:department', (req, res) => {
+    const department_name = req.params.department
+    Employee.find({department: department_name})
+        .then(employees => {
+            res.status(200).send(employees)
+        }).catch(err => {
+            console.log("Error getting employees by department: ", err)
+            res.status(500).json({
+                "error": "Failed to get employees by department"
+            })
+        })
+})
+
+employeeRouter.get('/employees/search/position/:position', (req, res) => {
+    const position_name = req.params.position
+    Employee.find({position: position_name})
+        .then(employees => {
+            res.status(200).send(employees)
+        }).catch(err => {
+            console.log("Error getting employees by position: ", err)
+            res.status(500).json({
+                "error": "Failed to get employees by position"
+            })
+        })
+})
+
 employeeRouter.put('/employees/:eid', (req, res) => {
     const employee_id = req.params.eid
     const updates = req.body
